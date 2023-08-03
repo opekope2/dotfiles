@@ -1,0 +1,241 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "margin-top": 0,
+    "margin-bottom": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 1, // default: 4
+    "gtk-layer-shell": true,
+    "modules-left": [
+        "custom/launcher",
+        "wlr/workspaces",
+        // "wlr/taskbar",
+        "hyprland/submap"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "tray",
+        // "cpu",
+        // "memory",
+        "backlight",
+        // "pulseaudio",
+        "pulseaudio#audio",
+        "pulseaudio#microphone",
+        // "bluetooth",
+        "network",
+        // "battery",
+        "custom/notification",
+        "clock",
+        "custom/powermenu"
+    ],
+    "custom/launcher": {
+        "format": "💧",
+        "on-click": "killall rofi || rofi -show drun",
+        "tooltip": false
+    },
+    "wlr/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "default": "1"
+        },
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1"
+    },
+    "wlr/taskbar": {
+        "all-outputs": false,
+        "format": "{icon}",
+        // "icon-theme": "",
+        "icon-size": 20,
+        "markup": false,
+        "tooltip": true,
+        "tooltip-format": "{title}",
+        "active-first": false,
+        "on-click": "activate",
+        // "on-click-middle": "",
+        // "on-click-right": "",
+        // "on-update": "",
+        "ignore-list": []
+        // "app_ids-mapping": {}
+    },
+    "hyprland/submap": {
+        "format": "{}",
+        "tooltip": false
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "separate-outputs": false
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "on-click": "",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "󰍛 {used:0.1f}GB ({percentage}%) / {total:0.1f}GB",
+        "on-click": "",
+        "tooltip": false
+    },
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": [
+            "󰃟"
+        ],
+        "on-scroll-up": "brightnessctl set +5% && ~/.config/dunst/scripts/show_brightness.sh",
+        "on-scroll-down": "brightnessctl set 5%- && ~/.config/dunst/scripts/show_brightness.sh",
+        "on-click": ""
+    },
+    "pulseaudio#audio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "󰂯{icon} {volume}%",
+        "format-bluetooth-muted": "󰂯󰖁 {volume}%",
+        "format-muted": "󰖁 {volume}%",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋋",
+            "headset": "󰋋",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        },
+        "on-click": "pavucontrol -t 1",
+        "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "tooltip": true,
+        "tooltip-format": "{icon} {desc}"
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "󰍬 {volume}%",
+        "format-source-muted": "󰍭 {volume}%",
+        "on-click": "pavucontrol -t 2",
+        "on-click-middle": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 5%-",
+        "max-volume": 100,
+        "tooltip": false
+    },
+    "network": {
+        "interval": 1,
+        "format-icons": [
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "on-click": "nm-connection-editor",
+        // TODO:
+        "format-wifi": "{icon} {essid} {bandwidthDownBits} {bandwidthUpBits}",
+        "format-ethernet": "󰈀 {ifname} {bandwidthDownBits} {bandwidthUpBits}",
+        "format-disconnected": "󰇨 Disconnected",
+        // TODO:
+        "tooltip-format-wifi": "{icon} {essid} | 󰢮 {ifname} | 󰩟 {ipaddr}/{cidr} | 󰞒 {bandwidthDownBytes} | 󰞕 {bandwidthUpBytes}",
+        "tooltip-format-ethernet": "󰩟 {ipaddr}/{cidr}"
+    },
+    "bluetooth": {
+        "format-disabled": "󰂯 {status}",
+        "format-off": "",
+        "format-on": "󰂯",
+        "format-connected": "󰂯 {device_alias}",
+        "format-connected-battery": "󰂯 {device_alias} 󰂄 {device_battery_percentage}%",
+        "on-click": "",
+        "tooltip": false
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󱘖 {capacity}%",
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ],
+        "on-click": "",
+        "tooltip": false
+    },
+    "custom/notification": {
+        "format": "{icon} {}",
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "󰂚",
+            "dnd-notification": "󰂛",
+            "dnd-none": "󰂛",
+            "inhibited-notification": "󰂞",
+            "inhibited-none": "󰂚",
+            "dnd-inhibited-notification": "󰂛",
+            "dnd-inhibited-none": "󰂛"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1; swaync-client -t -sw",
+        "on-click-middle": "swaync-client -d -sw",
+        "escape": true
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:󰅐 %H:%M:%S}",
+        "format-alt": "{:󰃮 %Y-%m-%d}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "left",
+            "on-scroll": 1,
+            // TODO:
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        // TODO:
+        "actions": {
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "custom/powermenu": {
+        // TODO:
+        "format": "󰐥",
+        "on-click": "~/.config/hypr/scripts/leave.sh",
+        "tooltip": false
+    }
+}
