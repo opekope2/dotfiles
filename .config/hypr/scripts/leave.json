@@ -1,0 +1,9 @@
+{
+    "Lock Session": "$HYPRLAND_SCRIPTS/lock.sh",
+    "\ufeffExit Hyprland": "hyprctl dispatch exit",
+    "\ufeff\ufeffSleep": "systemctl suspend",
+    "\ufeff\ufeff\ufeffHybrid Sleep": "systemctl suspend-then-hibernate",
+    "\ufeff\ufeff\ufeff\ufeffHibernate": "systemctl hibernate",
+    "\ufeff\ufeff\ufeff\ufeff\ufeffShut down": "systemctl poweroff",
+    "\ufeff\ufeff\ufeff\ufeff\ufeff\ufeffReboot": "systemctl reboot"
+}
