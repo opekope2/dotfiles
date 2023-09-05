@@ -10,7 +10,7 @@
     "gtk-layer-shell": true,
     "modules-left": [
         "custom/launcher",
-        "wlr/workspaces",
+        "hyprland/workspaces",
         // "wlr/taskbar",
         "hyprland/submap"
     ],
@@ -37,7 +37,7 @@
         "on-click": "killall rofi || rofi -show drun",
         "tooltip": false
     },
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
             "1": "1",
@@ -49,6 +49,7 @@
             "7": "7",
             "8": "8",
             "9": "9",
+            "10": "10",
             "default": "1"
         },
         "on-click": "activate",
